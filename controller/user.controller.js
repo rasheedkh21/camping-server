@@ -55,3 +55,21 @@ exports.login = asyncHandler(async (req, res, next) => {
     data: user,
   });
 });
+
+//to get users data
+exports.getAllUsers = asyncHandler(async (req, res, next) => {
+  const pageLimit = process.env.DEFAULT_PAGE_LIMIT || 3;
+
+  const limit = parseInt(req.query.limit || pageLimit);
+  const page = parseInt(req.query.page || 1);
+  const total = await User.countDocuments();
+
+  const user = await User.find();
+  res.status(201).json({
+    success: true,
+    pageCount: Math.ceil(total / limit),
+    currentPage: page,
+    nextPage: Math.ceil(total / limit) < page + 1 ? null : page + 1,
+    data: user,
+  });
+});

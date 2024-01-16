@@ -27,6 +27,8 @@ exports.createNewTuning = asyncHandler(async (req, res, next) => {
     company: req.body.company,
     cost: req.body.cost,
     licence: req.body.licence,
+    people:req.body.people,
+    location:req.body.location
   });
 
   res.status(201).json({
@@ -48,8 +50,8 @@ exports.getByTuningID = asyncHandler(async (req, res, next) => {
 //to delete data
 exports.delateTuning = asyncHandler(async (req, res) => {
   const tuningCarDataID = req.params.id;
-  const deletedData = await Tuning.findByIdAndDelete(tuningCarDataID);
-  res.status(201).json("Data removed successfully");
+  await Tuning.findByIdAndDelete(req.params.id);
+  res.status(200).json("Data removed successfully");
 });
 
 //to update data
@@ -59,6 +61,8 @@ exports.updateTuning = asyncHandler(async (req, res) => {
       company: req.body.company,
       cost: req.body.cost  ,
       licence: req.body.licence,
+      people:req.body.people,
+      location:req.body.location
   };
   const updatedTuning = await Tuning.findByIdAndUpdate(req.params.id, updatedData);
   res.status(200).json({

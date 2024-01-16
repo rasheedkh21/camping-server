@@ -19,6 +19,14 @@ const usedCarSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    people: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

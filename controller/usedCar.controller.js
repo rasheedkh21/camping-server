@@ -27,6 +27,8 @@ exports.createNewUsedCar = asyncHandler(async (req, res, next) => {
     company: req.body.company,
     cost: req.body.cost,
     licence: req.body.licence,
+    people:req.body.people,
+    location:req.body.location
   });
 
   res.status(201).json({
@@ -46,9 +48,8 @@ exports.getByUsedCarID = asyncHandler(async (req, res, next) => {
 });
 //to delete data
 exports.delateUsedCar = asyncHandler(async (req, res) => {
-  const usedCarDataID = req.params.id;
-  const deletedUsedCarData = await Motors.findByIdAndDelete(usedCarDataID);
-  res.status(201).json("Data removed successfully");
+  await usedCar.findByIdAndDelete(req.params.id);
+  res.status(200).json("Data removed successfully");
 });
 
 //to update data
@@ -58,6 +59,8 @@ exports.updateUsedCar = asyncHandler(async (req, res) => {
       company: req.body.company,
       cost: req.body.cost  ,
       licence: req.body.licence,
+      people:req.body.people,
+      location:req.body.location
   };
   const updatedUsedCar = await usedCar.findByIdAndUpdate(req.params.id, updatedData);
   res.status(200).json({

@@ -32,7 +32,7 @@ app.use("/api/v1/tuning", require("./routes/tuning.route"));
 app.use("/api/v1/usedCar", require("./routes/useCar.route"));
 app.use("/api/v1/auth", require("./routes/auth.route"));
 //State PORT
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5050;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`.bgGreen.bold);

@@ -27,6 +27,8 @@ exports.createNewCaravan = asyncHandler(async (req, res, next) => {
     company: req.body.company,
     cost: req.body.cost,
     licence: req.body.licence,
+    people:req.body.people,
+    location:req.body.location
   });
 
   res.status(201).json({
@@ -46,9 +48,8 @@ exports.getByCaravanID = asyncHandler(async (req, res, next) => {
 });
 //to delete data
 exports.delateCaravan = asyncHandler(async (req, res) => {
-  const caravanDataID = req.params.id;
-  const deletedCaravanData = await Motors.findByIdAndDelete(caravanDataID);
-  res.status(201).json("Data removed successfully");
+  await Caravan.findByIdAndDelete(req.params.id);
+  res.status(200).json("Data removed successfully");
 });
 
 //to update data
@@ -60,6 +61,8 @@ exports.updateCaravan = asyncHandler(async (req, res) => {
       company: req.body.company,
       cost: req.body.cost  ,
       licence: req.body.licence,
+      people:req.body.people,
+      location:req.body.location
   };
   const updatedCaravan = await Caravan.findByIdAndUpdate(req.params.id, updatedData);
   res.status(200).json({

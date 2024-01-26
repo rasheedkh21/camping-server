@@ -52,7 +52,6 @@ exports.delateCaravan = asyncHandler(async (req, res) => {
   res.status(200).json("Data removed successfully");
 });
 
-//to update data
 
 //to update data
 exports.updateCaravan = asyncHandler(async (req, res) => {
